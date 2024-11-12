@@ -1,0 +1,27 @@
+Map-Reduce:
+
+-->var mapfunction=function(){emit(this.cus_id,this.cus_age);};
+-->var reducefunction=function(keycus_id,valuescus_age){return Array.sum(valuescus_age);};
+-->db.customer.mapReduce(mapfunction,reducefunction,{out:"result"})
+-->test> db.result.find()
+
+Indexing Examples:
+
+1.create:
+-->db.customer.createIndex({title:1,likes:-1})
+
+2.Get:
+-->db.customer.getIndexes()
+
+3.Drop:
+-->db.customer.dropIndexes()
+
+Aggregation Framework Example:
+
+1.Sum:
+-->db.customer.aggregate([{$group:{_id:"$cus_age",total:{$sum:"$likes"}}}])
+
+2.min,max,avg,push
+
+format of insert data for these operation:
+db.customer.insert({cus_id:102,cus_name:"Bhumi",cus_age:21,cus_DOB:"03/10/2003",cus_address:"Nashik",cus_no:8541579153,tags:[102,"Bhumi",21,"03/10/2003","Nashik",8541579153],likes:160})

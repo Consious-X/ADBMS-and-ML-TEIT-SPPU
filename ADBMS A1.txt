@@ -1,0 +1,45 @@
+Crude Operation:
+
+create collection:
+-->db.createCollection("customer")
+
+insert data into collection:
+-->db.customer.insert({cus_id:101,cus_name:"Latesh",cus_age:20,cus_DOB:"20/04/2004",cus_address:"Nashik",cus_no:8208779153})
+
+delete data from collection:
+-->db.deleteOne({cus_id:106})
+
+update data into collection:
+-->db.customer.updateOne({cus_id:103},{$set:{cus_name:"Smita"}})
+
+Query Criteria:
+
+1.AND:
+-->db.customer.find({$and:[{cus_age:21},{cus_id:104}]})
+
+2.OR:
+--> db.customer.find({$or:[{cus_id:102},{cus_id:104}]})
+
+3.NOT:
+--> db.customer.find({cus_id:{$not:{$eq:103}}})
+
+4.greaterthan:
+-->db.customer.find({cus_age:{$gt:20}})
+
+
+where queries:
+-->db.customer.find({$where:"this.cus_age<20"})
+
+Cursors:
+
+1.Limit:
+-->db.customer.find().limit(2)
+
+2.Skip:
+-->db.customer.find().skip(2)
+
+3.Sort:
+-->db.customer.find().sort({cus_age:-1})
+
+4.Advanced Query Options: Use multiple options, such as sorting and limiting.
+-->db.customer.find({ cus_address: "Nashik" }).sort({ year:-1}).limit(1)
